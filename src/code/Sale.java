@@ -5,6 +5,7 @@ public class Sale {
     private long preDiscountTotal;
     private ISalePricing pricing;
 
+
     public Sale(long preDiscountTotal, ISalePricing pricing) {
         Validator.checkParam(pricing);
         Validator.checkParam(preDiscountTotal);
@@ -18,14 +19,14 @@ public class Sale {
 
     public void setPricing(ISalePricing pricing) {
         Validator.checkParam(pricing);
-
         this.pricing = pricing;
+
     }
 
     // not finished
     public long getTotal()
     {
-        return pricing.getTotal();
+        return pricing.getTotal(this);
     }
 
 

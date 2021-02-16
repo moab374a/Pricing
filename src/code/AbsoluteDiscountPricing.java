@@ -15,10 +15,15 @@ public class AbsoluteDiscountPricing implements ISalePricing {
     @Override
     public long getTotal(Sale sale) {
         Validator.checkParam(sale);
-        if (discount > threshold) {
-          sale.getTotal();
+
+        if (sale.getPreDiscountTotal() - discount > threshold) {
+            return   (sale.getPreDiscountTotal() - discount);
         }
 
-        return 0;
+        else if (sale.getPreDiscountTotal() >  threshold) {
+
+            return threshold;
+        }
+        return sale.getPreDiscountTotal();
     }
 }
