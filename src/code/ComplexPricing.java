@@ -8,6 +8,7 @@ public abstract class ComplexPricing implements ISalePricing {
     private  List<ISalePricing> pricings;
 
     public ComplexPricing(ISalePricing pricing) {
+        Validator.checkParam(pricing);
 
         this.pricings = new ArrayList<>();
         pricings.add(pricing);
@@ -17,6 +18,7 @@ public abstract class ComplexPricing implements ISalePricing {
 
     public void add(ISalePricing pricing)
     {
+        Validator.checkParam(pricing);
         pricings.add(pricing);
 
     }

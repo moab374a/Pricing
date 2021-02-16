@@ -6,6 +6,8 @@ public class Sale {
     ISalePricing pricing;
 
     public Sale(long preDiscountTotal, ISalePricing pricing) {
+        Validator.checkParam(pricing);
+        Validator.checkParam(preDiscountTotal);
         this.preDiscountTotal = preDiscountTotal;
         this.pricing = pricing;
     }
@@ -15,6 +17,7 @@ public class Sale {
     }
 
     public void setPricing(ISalePricing pricing) {
+        Validator.checkParam(pricing);
         this.pricing = pricing;
     }
 
@@ -26,7 +29,12 @@ public class Sale {
 
 
     public static ISalePricing createPricing(DiscountType discountType , double percentage , long discount , long threshold )
+
     {
+        Validator.checkParam(discountType);
+        Validator.checkParam(discount);
+        Validator.checkParam(threshold);
+        Validator.checkPercent(percentage);
         return null;
     }
 

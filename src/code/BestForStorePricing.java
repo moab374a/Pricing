@@ -11,6 +11,7 @@ public class BestForStorePricing extends ComplexPricing{
 
     public long getTotal(Sale sale)
     {
+        Validator.checkParam(sale);
         return 0;
     }
 }
