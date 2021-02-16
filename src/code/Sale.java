@@ -3,7 +3,7 @@ package code;
 public class Sale {
 
     private long preDiscountTotal;
-    ISalePricing pricing;
+    private ISalePricing pricing;
 
     public Sale(long preDiscountTotal, ISalePricing pricing) {
         Validator.checkParam(pricing);
@@ -18,23 +18,28 @@ public class Sale {
 
     public void setPricing(ISalePricing pricing) {
         Validator.checkParam(pricing);
+
         this.pricing = pricing;
     }
 
     // not finished
     public long getTotal()
     {
-        return pricing.getTotal(this);
+        return pricing.getTotal();
     }
 
 
-    public static ISalePricing createPricing(DiscountType discountType , double percentage , long discount , long threshold )
+    public static ISalePricing createPricing(DiscountType discountType , double percentage , long discount , long threshold ){
+        Validator.checkAll(discountType , percentage , discount , threshold);
 
-    {
-        Validator.checkParam(discountType);
-        Validator.checkParam(discount);
-        Validator.checkParam(threshold);
-        Validator.checkPercent(percentage);
+        switch (discountType){
+
+            case ABSOLUTEDISCOUNT:
+                return new AbsoluteDiscountPricing(discount,threshold);
+            case PERCENTAGEDISCOUNT:
+                return new PercentageDiscountPricing(percentage);
+        }
+
         return null;
     }
 

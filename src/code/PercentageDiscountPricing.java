@@ -13,6 +13,7 @@ public class PercentageDiscountPricing implements ISalePricing {
     @Override
     public long getTotal(Sale sale) {
         Validator.checkParam(sale);
-        return 0;
+
+        return sale.getPreDiscountTotal();
     }
 }
