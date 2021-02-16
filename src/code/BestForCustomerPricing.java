@@ -12,7 +12,16 @@ public class BestForCustomerPricing extends ComplexPricing {
     public long getTotal(Sale sale)
     {
         Validator.checkParam(sale);
-        return 0;
+
+        long a = sale.getPreDiscountTotal();
+
+        for (ISalePricing isale: getPricings()) {
+            // return after discount
+           if ( isale.getTotal(sale) < a){
+                a= isale.getTotal(sale);
+           }
+        }
+        return a;
     }
 
 
